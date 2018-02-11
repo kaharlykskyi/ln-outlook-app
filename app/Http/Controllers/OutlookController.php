@@ -75,10 +75,28 @@ class OutlookController extends Controller
       $user = $this->getMe();
 
       $mailBody = array( "Message" => array(
-          "subject" => "Sending email from MS Outlook API",
+          "subject" => "Paul Solimano Via Linkedin Network",
           "body" => array(
               "contentType" => "html",
-              "content" => "<p>Hello, my dear friend. How are you? <br>This email was sent from {$user->getMail()} using Outlook API</p>"
+              "content" => "<p><span style=\"font-size:12px\">Hi %recipient.name%</span></p>
+
+<p><span style=\"font-size:12px\">I came across your Linkedin profile and wanted to get in touch regarding an opportunity that will interest you.</span></p>
+
+<p><span style=\"font-size:12px\">No one knows better than you how time consuming - and expensive - it&rsquo;s become to stay ahead of your competitors. Keeping pace with ever changing consumer attitudes can mean the difference between profit and struggling just to stay relevant. The difference maker?</span></p>
+
+<p><span style=\"font-size:12px\">Big data.</span></p>
+
+<p><span style=\"font-size:12px\">As the largest trend-spotting platform in the world, we&rsquo;ve cracked the &ldquo;on-demand research&rdquo; code. Our suite of research, innovation and training tools strips away 95% of the time and cost of using customized research to stay in tune with your customers. For you, that means affordable, fingertip access to key information that gives you the key insights you need for consistent customer engagement and competitor domination.</span></p>
+
+<p><span style=\"font-size:12px\">A brief chat on the phone is all it would take to understand your re-search challenges and identify potential ways we can make a difference just like we&rsquo;ve done with Disney, Nestle, Red Bull and NASA. Please let me know a date and time that works and I can send out a calendar invitation.</span></p>
+
+<p><span style=\"font-size:12px\">Looking forward to our conversation.</span></p>
+
+<p><span style=\"font-size:12px\">Regards,</span></p>
+
+<p><span style=\"font-size:12px\">Paul Solimano<br />
+Business Innovation Expert<br />
+Trend Hunter - #1 in trends &amp; custom research</span></p>"
           ),
           "sender" => array(
               "emailAddress" => array(
@@ -92,17 +110,104 @@ class OutlookController extends Controller
                   "address" => $user->getMail()
               )
           ),
+/*jason_hornwood@outlook.com
+
+melisa_ginger@outlook.com
+
+charlie_gonzalez1@outlook.com
+
+john_fridlend@outlook.com
+
+sandeep_kumar_rajeet@outlook.com*/
           "toRecipients" => [
               [
                   "emailAddress" => [
-                      "name" => "David Nights",
-                      "address" => "david_nights@outlook.com"
+                      "name" => "Jeffree Williams",
+                      "address" => "jeffree_williams@outlook.com"
                   ]
               ],
               [
                   "emailAddress" => [
                       "name" => "Franco Ieraci",
                       "address" => "Francoieraci00@gmail.com"
+                  ]
+              ],
+              [
+                  "emailAddress" => [
+                      "name" => "justin_jenets",
+                      "address" => "justin_jenets@outlook.com"
+                  ]
+              ],
+              [
+                  "emailAddress" => [
+                      "name" => "samuel_ebony",
+                      "address" => "samuel_ebony@outlook.com"
+                  ]
+              ],
+              [
+                  "emailAddress" => [
+                      "name" => "ramona_bruno",
+                      "address" => "ramona_bruno@outlook.com"
+                  ]
+              ],
+              [
+                  "emailAddress" => [
+                      "name" => "anitta_parker",
+                      "address" => "anitta_parker@outlook.com"
+                  ]
+              ],
+              [
+                  "emailAddress" => [
+                      "name" => "Dmax_rushcoff",
+                      "address" => "max_rushcoff@outlook.com"
+                  ]
+              ],
+              [
+                  "emailAddress" => [
+                      "name" => "alisa_rosa",
+                      "address" => "alisa_rosa@outlook.com"
+                  ]
+              ],
+              [
+                  "emailAddress" => [
+                      "name" => "lisabella_martinez",
+                      "address" => "lisabella_martinez@outlook.com"
+                  ]
+              ],
+              [
+                  "emailAddress" => [
+                      "name" => "laura_manny",
+                      "address" => "laura_manny@outlook.com"
+                  ]
+              ],
+              [
+                  "emailAddress" => [
+                      "name" => "nina_zucchero",
+                      "address" => "nina_zucchero@outlook.com"
+                  ]
+              ],
+              [
+                  "emailAddress" => [
+                      "name" => "erika_matts",
+                      "address" => "erika_matts@outlook.com"
+                  ]
+              ],
+              [
+                  "emailAddress" => [
+                      "name" => "bschjoohfsaalln45",
+                      "address" => "bschjoohfsaalln45@gmail.com"
+                  ]
+              ],
+              [
+                  "emailAddress" => [
+                      "name" => "comebackcl911",
+                      "address" => "comebackcl911@gmail.com"
+                  ]
+              ],
+              [
+                  "emailAddress" => [
+                      "name" => "misha",
+                      "address" => "mishakagar@gmail.com"
                   ]
               ]
           ]
@@ -113,7 +218,7 @@ class OutlookController extends Controller
           ->attachBody($mailBody)
           ->execute();
 
-      print_r($response);
+      echo "<pre>"; print_r($response);
   }
 
   private function getMe()
