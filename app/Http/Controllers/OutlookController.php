@@ -83,18 +83,17 @@ class OutlookController extends Controller
         $to_emails = $request->input('to_emails');
         $names = $request->input('names');
         $html = $request->input('html');
-        $plain = $request->input('plain');
 
         $array_emails = explode(",", $to_emails);
         $array_names = explode(",", $names);
-
-//        dd(trim($array_emails[1]));
 
         foreach ($array_emails as $i => $to_email) {
             $message = $this->getMessage($html, $array_names[$i]);
             $this->send($sender_name, trim($email), trim($to_email), trim($subject), $message);
         }
 
+        flash('Sent!')->success();
+        return redirect('/send-form');
     }
 
     private function getMessage($html, $name)
@@ -140,18 +139,14 @@ class OutlookController extends Controller
                 )
             ),
             "toRecipients" => [
-                ["emailAddress" => ["address" => $recipient]] //Steve Ewing
+                ["emailAddress" => ["address" => $recipient]]
             ]
         )
         );
 
-//        dd($mailBody);
-
         $response = $graph->createRequest("POST", "/me/sendMail")
             ->attachBody($mailBody)
             ->execute();
-
-        if($response) echo "sent<br>" ;
     }
 
   private function getMe()
