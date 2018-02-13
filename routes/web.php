@@ -18,4 +18,5 @@ Route::get('/', function () {
 Route::get('/signin', 'AuthController@signin');
 Route::get('/authorize', 'AuthController@gettoken');
 Route::get('/mail', 'OutlookController@mail')->name('mail');
-Route::get('/sendmail', 'OutlookController@sendEmail')->name('sendEmail');
+Route::get('/send-form', 'OutlookController@sendForm')->name('send-form');
+Route::post('/sendemail', 'OutlookController@sendEmail')->name('sendEmail');

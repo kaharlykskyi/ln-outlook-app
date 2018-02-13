@@ -22,8 +22,8 @@
           <ul class="nav navbar-nav">
             <li class="<?= ($_SERVER['REQUEST_URI'] == '/' ? 'active' : '');?>"><a href="/">Home</a></li>
             <li class="<?= ($_SERVER['REQUEST_URI'] == '/mail' ? 'active' : '');?>"><a href="/mail">Inbox</a></li>
-            <!--<li class="<?php echo ($_SERVER['REQUEST_URI'] == '/calendar' ? 'active' : '');?>"><a href="/calendar">Calendar</a></li>-->
-            <li class="<?=($_SERVER['REQUEST_URI'] == '/sendmail' ? 'active' : '');?> disabled"><a href="/sendmail">Send email</a></li>
+            <!--<li class="<?=($_SERVER['REQUEST_URI'] == '/calendar' ? 'active' : '');?>"><a href="/calendar">Calendar</a></li>-->
+            <li class="<?=($_SERVER['REQUEST_URI'] == '/sendmail' ? 'active' : '');?>"><a href="/send-form">Send emails</a></li>
           </ul>
           <?php if(isset($user['full_name'])) { ?>
           <ul class="nav navbar-nav navbar-right">
