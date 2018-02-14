@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Microsoft\Graph\Graph;
 use Microsoft\Graph\Model;
+use Illuminate\Support\Collection;
 
 class OutlookController extends Controller
 {
@@ -84,6 +85,8 @@ class OutlookController extends Controller
         $names = $request->input('names');
         $html = $request->input('html');
 
+//        dd($html);
+
         $array_emails = explode(",", $to_emails);
         $array_names = explode(",", $names);
 
@@ -98,7 +101,7 @@ class OutlookController extends Controller
 
     private function getMessage($html, $name)
     {
-        $search   = ["%recipient.name%"];
+        $search = ["%recipient.name%"];
         $replace = [$name];
         return str_replace($search, $replace, $html);
     }
@@ -120,7 +123,7 @@ class OutlookController extends Controller
         $graph = new Graph();
         $graph->setAccessToken($tokenCache->getAccessToken());
 
-        $mailBody = array( "Message" => array(
+        $mailBody = array("Message" => array(
             "subject" => $subject,
             "body" => array(
                 "contentType" => "html",
@@ -149,25 +152,45 @@ class OutlookController extends Controller
             ->execute();
     }
 
-  private function getMe()
-  {
-      if (session_status() == PHP_SESSION_NONE) {
-          session_start();
-      }
+    private function getMe()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
 
-      $tokenCache = new \App\TokenStore\TokenCache;
+        $tokenCache = new \App\TokenStore\TokenCache;
 
-      if(!$tokenCache->getAccessToken()) {
-          exit('No token');
-      }
+        if (!$tokenCache->getAccessToken()) {
+            exit('No token');
+        }
 
-      $graph = new Graph();
-      $graph->setAccessToken($tokenCache->getAccessToken());
+        $graph = new Graph();
+        $graph->setAccessToken($tokenCache->getAccessToken());
 
-      $user = $graph->createRequest('GET', '/me')
-          ->setReturnType(Model\User::class)
-          ->execute();
+        $user = $graph->createRequest('GET', '/me')
+            ->setReturnType(Model\User::class)
+            ->execute();
 
-      return $this->user = $user;
-  }
+        return $this->user = $user;
+    }
+
+
+
+    public function loadExcel()
+    {
+        \Excel::load('data2.csv')->each(function ($row) {
+            echo $row->firstname. ",";
+        });
+        /*\Excel::load('datas.xlsx')->each(function ($row) {
+            echo $row->login. "@gmail.com,";
+        });*/
+
+        $str = "jeffree_williams@outlook.com,justin_jenets@outlook.com,samuel_ebony@outlook.com,ramona_bruno@outlook.com,anitta_parker@outlook.com,max_rushcoff@outlook.com,alisa_rosa@outlook.com,lisabella_martinez@outlook.com,laura_manny@outlook.com,nina_zucchero@outlook.com,erika_matts@outlook.com,david_nights@outlook.com,jason_hornwood@outlook.com,melisa_ginger@outlook.com,charlie_gonzalez1@outlook.com,john_fridlend@outlook.com,sandeep_kumar_rajeet@outlook.com,emma_geller-green@outlook.com,bill_tribiani@outlook.com,margery_harp@outlook.com,jeffree_williams@outlook.com,justin_jenets@outlook.com,DianneLBurkhart479@gmail.com,KristenWThomas346@gmail.com,TinaSDuff476@gmail.com,RachelMPinnock589@gmail.com,CatherineLGaspar764@gmail.com,JudithJGarcia478@gmail.com,DeidraJPineda478@gmail.com,BessieRPerkins479@gmail.com";
+        $names= "name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name,name";
+        //echo count(explode(",",$str));
+
+        /*for($i=0;$i<31;$i++) {
+            echo "name,";
+        }*/
+    }
 }
